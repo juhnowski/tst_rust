@@ -1,4 +1,3 @@
-
 use log::{error, info, warn, LevelFilter};
 use log4rs::{
     append::console::ConsoleAppender,
@@ -22,6 +21,23 @@ use gtk::{ButtonsType,
           Window};
 
 use std::env;
+
+use rusqlite::{Connection, Result};
+use rusqlite::NO_PARAMS;
+
+pub fn db_init() -> Result<()> {
+    let conn = Connection::open("sessions.db")?;
+
+    conn.execute(
+        "create table if not exists sessions (
+            id integer primary key,
+            name text not null unique
+        )",
+        NO_PARAMS,
+    )?;
+
+    Ok(())
+}
 
 
 fn main() {
@@ -55,6 +71,8 @@ let host: gtk::Entry  = builder.get_object("host").unwrap();
 let port: gtk::Entry  = builder.get_object("port").unwrap();
 
 let open: gtk::Button = builder.get_object("button_open").unwrap();
+
+db_init();
 
 button.connect_clicked(move |_| {
     dialog.run();
