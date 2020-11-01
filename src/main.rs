@@ -12,9 +12,17 @@ extern crate gio;
 use gtk::prelude::*;
 use gio::prelude::*;
 
-use gtk::{ButtonsType, DialogFlags, MessageType, MessageDialog, Window};
+use gtk::{ButtonsType,
+          DialogFlags,
+          MessageType, 
+          MessageDialog, 
+          FileChooserDialog,
+          FileChooserAction,
+          ResponseType,
+          Window};
 
 use std::env;
+
 
 fn main() {
     let stdout: ConsoleAppender = ConsoleAppender::builder()
@@ -46,14 +54,27 @@ let revert: gtk::Button = builder.get_object("button_revert").unwrap();
 let host: gtk::Entry  = builder.get_object("host").unwrap();
 let port: gtk::Entry  = builder.get_object("port").unwrap();
 
+let open: gtk::Button = builder.get_object("button_open").unwrap();
+
 button.connect_clicked(move |_| {
     dialog.run();
     dialog.hide();
 });
 
 revert.connect_clicked(move |_| {
-    host.set_text("127.0.0.1")
-    port.set_text("7001")
+    host.set_text("127.0.0.1");
+    port.set_text("7001");
+});
+
+open.connect_clicked(move |_| {
+    let open_dialog = FileChooserDialog::with_buttons::<Window>(
+        Some("Open File"),
+        None,
+        FileChooserAction::Open,
+        &[("_Cancel", ResponseType::Cancel), ("_Open", ResponseType::Accept)]
+    );
+    open_dialog.run();
+    open_dialog.hide();
 });
 
 

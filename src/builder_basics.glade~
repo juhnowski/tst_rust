@@ -20,8 +20,8 @@
             <property name="orientation">vertical</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton">
-                <property name="label">gtk-ok</property>
+              <object class="GtkButton" id="button_revert">
+                <property name="label">gtk-revert-to-saved</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -125,6 +125,19 @@
             <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
           </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label">gtk-open</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_stock">True</property>
+            <property name="always_show_image">True</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
     </child>
