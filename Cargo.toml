@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 gtk = { git = "https://github.com/gtk-rs/gtk.git" }
+log = "0.4"
+log4rs = "0.13.0"
