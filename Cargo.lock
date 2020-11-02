@@ -1012,6 +1012,7 @@ name = "tst"
 version = "0.1.0"
 dependencies = [
  "gio",
+ "glib",
  "gtk",
  "log",
  "log4rs",

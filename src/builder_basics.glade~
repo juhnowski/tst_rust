@@ -4,7 +4,11 @@
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkMessageDialog" id="messagedialog1">
     <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="icon_name">emblem-shared</property>
     <property name="type_hint">dialog</property>
+    <property name="text" translatable="yes">UDP connection properties</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="messagedialog-vbox1">
         <property name="name">msgdialog</property>
@@ -17,7 +21,6 @@
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="messagedialog-action_area1">
             <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button_revert">
@@ -26,12 +29,25 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <property name="always_show_image">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_udp_ok">
+                <property name="label">gtk-ok</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
@@ -108,6 +124,7 @@
     <property name="window_position">center-on-parent</property>
     <property name="default_width">320</property>
     <property name="default_height">240</property>
+    <property name="destroy_with_parent">True</property>
     <property name="icon_name">emblem-shared</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
@@ -123,17 +140,15 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="use_stock">True</property>
-            <property name="always_show_image">True</property>
           </object>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="button_open">
             <property name="label">gtk-open</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="use_stock">True</property>
-            <property name="always_show_image">True</property>
           </object>
           <packing>
             <property name="position">1</property>
@@ -145,6 +160,63 @@
       <object class="GtkListBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMessageDialog" id="app_open_dialog">
+    <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="icon_name">emblem-shared</property>
+    <property name="type_hint">dialog</property>
+    <property name="attached_to">window1</property>
+    <property name="message_type">question</property>
+    <property name="text" translatable="yes">Select application  mode</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="homogeneous">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="app_open_sender">
+                <property name="label" translatable="yes">Sender</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="sender" object="app_open_dialog" after="yes" swapped="yes"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="app_open_receiver">
+                <property name="label" translatable="yes">Receiver</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="receiver" object="app_open_dialog" after="yes" swapped="yes"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>

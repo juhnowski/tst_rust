@@ -5,6 +5,7 @@ authors = ["juhnowski <juhnowski@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+glib = "0.10.3"
 gtk = "0.9.2"
 gio = "0.9.1"
 log = "0.4"
